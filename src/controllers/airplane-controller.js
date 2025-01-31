@@ -52,9 +52,27 @@ async function getAirplane(req,res) {
     }
 }
 
+/* 
+api/v1/airplanes/:id //  delete
+*/
+async function destroyAirplane(req,res) {
+    try {
+        const airplanes =await AirplaneServices.destroyAirplane(req.params.id);
+        successResponse.data=airplanes;
+        return res.status(StatusCodes.OK).json( successResponse);
+    } catch (error) {
+        console.log("error in controllers",error)
+        return res.status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({
+            error: error.message || "Internal Server Error"
+        });   
+    }
+}
+
+
 
 module.exports={
     createAirplane,
     getAirplanes,
-    getAirplane
+    getAirplane,
+    destroyAirplane
 }

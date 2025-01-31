@@ -23,7 +23,13 @@ router.get('/',
  
 router.get('/:id', 
         controllers.Airplanecontroller.getAirplane);
+
+
     
-    
+     // Use the controller without destructuring api/v1/airplanes /:id/ delete request 
+ 
+router.delete('/:id', 
+    controllers.Airplanecontroller.destroyAirplane);
+
 
 module.exports = router;

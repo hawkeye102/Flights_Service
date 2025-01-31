@@ -28,6 +28,10 @@ async destroy(data){
             id:data
         }
       });
+      if(!response){
+        throw new Apperror("the plane is not found",StatusCodes.NOT_FOUND);
+      }
+      
       return response;
    
   }
