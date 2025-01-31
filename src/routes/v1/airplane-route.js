@@ -18,6 +18,12 @@ router.post('/', AirplaneMiddleware.ValidateCreateRequest,
 // Use the controller without destructuring api/v1/airplanes /get request 
 router.get('/', 
     controllers.Airplanecontroller.getAirplanes);
-
+ 
+    // Use the controller without destructuring api/v1/airplanes /:id/get request 
+ 
+router.get('/:id', 
+        controllers.Airplanecontroller.getAirplane);
+    
+    
 
 module.exports = router;

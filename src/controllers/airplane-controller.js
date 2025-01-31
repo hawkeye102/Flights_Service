@@ -35,7 +35,26 @@ async function getAirplanes(req,res) {
     }
 }
 
+/**
+ api/v1/airplanes:id
+ */
+
+async function getAirplane(req,res) {
+    try {
+        const airplanes =await AirplaneServices.getAirplane(req.params.id);
+        successResponse.data=airplanes;
+        return res.status(StatusCodes.OK).json( successResponse);
+    } catch (error) {
+        console.log("error in controllers",error)
+        return res.status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({
+            error: error.message || "Internal Server Error"
+        });   
+    }
+}
+
+
 module.exports={
     createAirplane,
-    getAirplanes
+    getAirplanes,
+    getAirplane
 }

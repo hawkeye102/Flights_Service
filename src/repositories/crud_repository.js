@@ -1,3 +1,6 @@
+const {StatusCodes} =require('http-status-codes')
+
+const Apperror = require('../utils/errors/app-error');
 const logger = require('../utils/loggers'); // Adjust the path if needed
 
 
@@ -32,7 +35,10 @@ async destroy(data){
   async get(data){
    
         const response = await this.model.findByPk(data); // Correct method name
-
+  if(!response){
+ 
+        throw new Apperror("the plane is not found",StatusCodes.NOT_FOUND);
+}
       return response;
     } 
   

@@ -9,8 +9,8 @@ async function createAirplane(data) {
         const airplane= await airplaneRepository.create(data);
         return airplane;
     } catch (error) {
-        console.log(error); // Logs full error details
-
+        console.error("Caught error object:", error)
+        
         if (error.name === 'SequelizeValidationError') {
             throw new Apperror(
                 error.errors.map(err => err.message).join(", "), // Collect validation messages
@@ -33,7 +33,20 @@ async function getAirplanes() {
     
 }
 
+ async function getAirplane(id){
+   try {
+    const airplane  = await airplaneRepository.get(id);
+        return airplane;
+   } catch (error) {
+    if(error.statusCode == StatusCodes.NOT_FOUND){
+        throw new Apperror("the plane you requested in not present",error.statusCodes);
+    }
+    throw new Apperror("cannot fetch data of all the airplanes", StatusCodes.INTERNAL_SERVER_ERROR); 
+   }
+}
+
 module.exports={
     createAirplane,
-    getAirplanes
+    getAirplanes,
+    getAirplane
 }
