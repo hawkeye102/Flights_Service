@@ -1,0 +1,32 @@
+const {StatusCodes} =require('http-status-codes');
+
+const {Cityservice} = require('../services'); 
+
+const {errorResponse, successResponse} =require('../utils/common')
+
+/**
+ * 
+ * POST : /cities 
+ * req body {name:london}
+ */
+const createCity = async (req, res) => {
+    try {
+        
+        const city= await Cityservice.createCity ({
+           name:req.body.name
+        });
+        successResponse.data=city;
+        return res.status(StatusCodes.CREATED).json( successResponse);
+
+    } catch (error) {
+        console.log("error in controllers",error)
+        return res.status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({
+            error: error.message || "Internal Server Error"
+        });
+    }
+}
+
+module.exports={
+createCity
+}
+

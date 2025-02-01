@@ -1,5 +1,6 @@
-const AirplaneServices = require('./airplane-services');
+
 
 module.exports = {
-    AirplaneServices
+    AirplaneServices :require('./airplane-services'),
+    Cityservice :require('./city-service')
 }

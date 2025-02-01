@@ -1,5 +1,6 @@
 const { ValidateCreateRequest } = require("./airplane-middleware");
 
 module.exports={
-    AirplaneMiddleware:require('./airplane-middleware')
+    AirplaneMiddleware:require('./airplane-middleware'),
+    CityMiddleware:require('./city-middleware')
 }
