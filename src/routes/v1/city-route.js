@@ -13,6 +13,9 @@ router.post('/',CityMiddleware.ValidateCreateRequest,
 
    //Use the controller without destructuring api/v1/cities /delete request 
 router.delete('/:id', controllers.CityController.destroyCity);
+
+//Use the controller without destructuring api/v1/cities / get request 
+router.get('/', controllers.CityController.getCity);
       
    
 module.exports=router;

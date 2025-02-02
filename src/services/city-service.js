@@ -39,7 +39,19 @@ async function destroyCity(id) {
     }
 }
 
+async function getCity(id) {
+    
+    try {
+        const city  = await cityRepository.getAll(id);
+        return city;
+    } catch (error) {
+        throw new AppError("cannot fetch data of all the cities", StatusCodes.INTERNAL_SERVER_ERROR); 
+    }
+    
+}
+
 module.exports = {
     createCity,
-    destroyCity
+    destroyCity,
+    getCity
 }
