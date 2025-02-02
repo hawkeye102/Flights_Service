@@ -16,6 +16,10 @@ router.delete('/:id', controllers.CityController.destroyCity);
 
 //Use the controller without destructuring api/v1/cities / get request 
 router.get('/', controllers.CityController.getCity);
+
+// Use the controller without destructuring api/v1/cities/:id :/data/ partial update request 
+   router.patch('/:id', 
+        controllers.CityController.updateCity);
       
    
 module.exports=router;

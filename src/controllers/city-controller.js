@@ -53,6 +53,20 @@ const getCity = async (req, res) => {
     }
 }
 
+async function updateCity(req,res) {
+    try {
+        const city =await Cityservice.updateCity(req.params.id,req.body);
+        successResponse.data=city;
+        return res.status(StatusCodes.OK).json( successResponse);
+    } catch (error) {
+        console.log("error in controllers",error)
+        return res.status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({
+            error: error.message || "Internal Server Error"
+        });   
+    }
+}
+
+
 
 
 
@@ -61,6 +75,7 @@ const getCity = async (req, res) => {
 module.exports={
 createCity,
 destroyCity,
-getCity
+getCity,
+updateCity
 }
 
