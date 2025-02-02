@@ -26,7 +26,22 @@ const createCity = async (req, res) => {
     }
 }
 
+const destroyCity = async (req, res) => {
+    try {
+        const city =await Cityservice.destroyCity(req.params.id);
+        successResponse.data=city;
+        return res.status(StatusCodes.OK).json( successResponse);
+    } catch (error) {
+        console.log("error in controllers",error)
+        return res.status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({
+            error: error.message || "Internal Server Error"
+        });   
+    }
+}
+
+
 module.exports={
-createCity
+createCity,
+destroyCity
 }
 
