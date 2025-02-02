@@ -32,4 +32,9 @@ router.delete('/:id',
     controllers.Airplanecontroller.destroyAirplane);
 
 
+ // Use the controller without destructuring api/v1/airplanes /:id :/data/ partial update request 
+   router.patch('/:id', 
+        controllers.Airplanecontroller.updateAirplane);
+    
+
 module.exports = router;

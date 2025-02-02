@@ -69,10 +69,25 @@ async function destroyAirplane(req,res) {
 }
 
 
+async function updateAirplane(req,res) {
+    try {
+        const airplanes =await AirplaneServices.updateAirplane(req.params.id,req.body);
+        successResponse.data=airplanes;
+        return res.status(StatusCodes.OK).json( successResponse);
+    } catch (error) {
+        console.log("error in controllers",error)
+        return res.status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({
+            error: error.message || "Internal Server Error"
+        });   
+    }
+}
+
+
 
 module.exports={
     createAirplane,
     getAirplanes,
     getAirplane,
-    destroyAirplane
+    destroyAirplane,
+    updateAirplane
 }
