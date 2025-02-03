@@ -50,6 +50,17 @@ async function getCity(id) {
     
 }
 
+async function getoneCity(id) {
+    
+    try {
+        const city  = await cityRepository.get(id);
+        return city;
+    } catch (error) {
+        throw new AppError("this city is not present in db", StatusCodes.INTERNAL_SERVER_ERROR); 
+    }
+    
+}
+
 async function updateCity(id,data) {
     try {
         const response = await cityRepository.update(id,data);
@@ -58,7 +69,7 @@ async function updateCity(id,data) {
         if(error.statusCode == StatusCodes.NOT_FOUND){
             throw new AppError("the plane you requested to update is not present",error.statusCode);
         }
-        throw new AppError("cannot fetch data of all the airplanes", StatusCodes.INTERNAL_SERVER_ERROR); 
+        throw new AppError("the city is not present", StatusCodes.INTERNAL_SERVER_ERROR); 
     }
 }
 
@@ -67,5 +78,6 @@ module.exports = {
     createCity,
     destroyCity,
     getCity,
-    updateCity
+    updateCity,
+    getoneCity
 }
