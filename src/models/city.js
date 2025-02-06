@@ -1,3 +1,4 @@
+const Airports=require('./airport')
 'use strict';
 const {
   Model
@@ -11,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.hasMany(models.Airports,{
+      this.hasMany(models.Airport,{
         foreignKey:'city_id'
       })
     }
