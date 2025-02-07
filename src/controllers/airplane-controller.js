@@ -24,7 +24,15 @@ const createAirplane = async (req, res) => {
 
 async function getAirplanes(req,res) {
     try {
+        console.log('is the error here ',req.body)
+        console.log('🔍 Checking AirplaneServices:', AirplaneServices);
+
+        if (!AirplaneServices || !AirplaneServices.getAirplanes) {
+            throw new Error('AirplaneServices is not defined or missing getAirplanes method');
+        }
+
         const airplanes =await AirplaneServices.getAirplanes();
+        console.log('✅ Calling AirplaneServices.getAirplanes');
         successResponse.data=airplanes;
         return res.status(StatusCodes.OK).json( successResponse);
     } catch (error) {

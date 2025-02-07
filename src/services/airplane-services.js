@@ -25,7 +25,9 @@ async function createAirplane(data) {
 async function getAirplanes() {
     
     try {
+        console.log('the rpo is working fine')
         const airplanes  = await airplaneRepository.getAll();
+        console.log("✅ Airplanes fetched:", airplanes);
         return airplanes;
     } catch (error) {
         throw new Apperror("cannot fetch data of all the airplanes", StatusCodes.INTERNAL_SERVER_ERROR); 

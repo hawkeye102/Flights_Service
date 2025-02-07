@@ -3,10 +3,10 @@ const controllers = require('../../controllers');
 
 // const airportController =require('../../controllers')
 
-// // Debug logs
-console.log('All controllers:', controllers);
-console.log('Airplane controller:', controllers.Airplanecontroller);
-console.log('Create airport method:', controllers.AirportController?.createAirport);
+// // // Debug logs
+// console.log('All controllers:', controllers);
+// console.log('Airplane controller:', controllers.Airplanecontroller);
+// console.log('Create airport method:', controllers.AirportController?.createAirport);
 
 
 

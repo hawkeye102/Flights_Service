@@ -26,6 +26,11 @@ router.post('/', FlightMiddleware.validateCreateRequest,(req,res,next)=>{
 
     controllers.FlightController.createFlight(req,res,next);});
 
+    // /api/v1/flights?trips=MUM-DEL GET
+router.get('/', 
+    controllers.FlightController.getAllFlights);
+
+
 
 
 
