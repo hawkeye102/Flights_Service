@@ -71,6 +71,22 @@ function validateCreateRequest(req,res,next){
 
 }
 
+function validateUpdateSeatsRequest(req, res, next) {
+ 
+
+  if (!req.body.seats || req.body.seats <= 0) {
+      console.log('Invalid seats value:', req.body);
+      return res.status(StatusCodes.BAD_REQUEST).json({
+          message: 'Seats must be a positive number',
+          error: { explanation: 'seats is not in correct form' }
+      });
+  }
+
+  next(); 
+}
+
+
 module.exports={
-    validateCreateRequest
+    validateCreateRequest,
+    validateUpdateSeatsRequest
 }

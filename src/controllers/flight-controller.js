@@ -76,6 +76,25 @@ async function getAllFlights(req, res) {
     }
 }
 
+async function updateSeats(req,res) {
+   
+    try {
+        console.log('Received request to update seats:', req.body);
+        const response= await FlightService.updateSeats({
+            id:req.params.id,
+            seats:req.body.seats,
+            dec: req.body.dec
+        });
+        successResponse.data=response;
+        return res.status(StatusCodes.OK).json( successResponse);
+    } catch (error) {
+        return res.status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({
+            error: error.message || "Internal Server Error"
+        });    
+    }
+    
+}
+
 
 
 
@@ -87,6 +106,7 @@ async function getAllFlights(req, res) {
 module.exports={
     createFlight,
     getAllFlights,
-    getFlight
+    getFlight,
+    updateSeats
    
 }

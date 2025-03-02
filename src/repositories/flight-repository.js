@@ -1,6 +1,8 @@
 const {Sequelize}=require('sequelize')
 const {Flight,Airplane,Airport,City} = require('../models');
 const crudRepository = require('./crud_repository');
+const db =require('../models') 
+const{addRowLockOnFlights}=require('./Query')
 
 class FlightRepository extends crudRepository{
     constructor(){
@@ -57,7 +59,21 @@ class FlightRepository extends crudRepository{
   });
   return response
     }
+
+    async updateRemainingSeats(id,seats,dec=true) {
+      await db.sequelize.query(addRowLockOnFlights(id));
+      if(dec){
+        const response= await Flight.decrement('totalSeats',{by:seats,where: { id: id }});
+        return response
+      }
+      else{
+        const response= await Flight.increment('totalSeats',{by:seats,where: { id: id }});
+        return response
+      }
+      
+    }
 }
+
 
 
 module.exports=FlightRepository;
