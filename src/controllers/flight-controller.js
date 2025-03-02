@@ -58,6 +58,24 @@ async function getAllFlights(req, res) {
     }
 }
 
+/**
+ api/v1/flights:id
+ */
+
+ async function getFlight(req,res) {
+    try {
+        
+        const flight =await FlightService.getFlight(req.params.id);
+        successResponse.data=flight;
+        return res.status(StatusCodes.OK).json( successResponse);
+    } catch (error) {
+        console.log("error in controllers",error)
+        return res.status(error.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({
+            error: error.message || "Internal Server Error"
+        });   
+    }
+}
+
 
 
 
@@ -68,6 +86,7 @@ async function getAllFlights(req, res) {
 
 module.exports={
     createFlight,
-    getAllFlights
+    getAllFlights,
+    getFlight
    
 }

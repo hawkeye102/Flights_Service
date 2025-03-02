@@ -30,6 +30,11 @@ router.post('/', FlightMiddleware.validateCreateRequest,(req,res,next)=>{
 router.get('/', 
     controllers.FlightController.getAllFlights);
 
+    // /api/v1/flights/id
+router.get('/:id', 
+    controllers.FlightController.getFlight);
+
+
 
 
 
