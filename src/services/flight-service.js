@@ -62,7 +62,7 @@ async function getAllFlights(query) {
         return flights;
     } catch(error) {
         console.log(error);
-        throw new AppError('Cannot fetch data of all the flights', StatusCodes.INTERNAL_SERVER_ERROR);
+        throw new Apperror('Cannot fetch data of all the flights', StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
 
@@ -73,9 +73,9 @@ async function getFlight(id) {
         return flight;
     } catch(error) {
         if(error.statusCode == StatusCodes.NOT_FOUND) {
-            throw new AppError('The flight you requested is not present', error.statusCode);
+            throw new Apperror('The flight you requested is not present', error.statusCode);
         }
-        throw new AppError('Cannot fetch data of the flight', StatusCodes.INTERNAL_SERVER_ERROR);
+        throw new Apperror('Cannot fetch data of the flight', StatusCodes.INTERNAL_SERVER_ERROR);
     }
 }
 
@@ -85,7 +85,7 @@ async function updateSeats(data) {
         return response
     } catch (error) {
         console.log(error)
-        throw new AppError('Cannot update data of the flight', StatusCodes.INTERNAL_SERVER_ERROR);
+        throw new Apperror('Cannot update data of the flight', StatusCodes.INTERNAL_SERVER_ERROR);
     
     }
     
